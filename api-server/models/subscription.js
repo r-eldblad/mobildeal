@@ -49,6 +49,10 @@ const subscriptionSchema = new Schema(
       type: Number,
       required: true,
     },
+    admin: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Admin",
+    },
   },
   {
     timestamps: true,

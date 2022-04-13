@@ -18,6 +18,8 @@ const adminSchema = new Schema(
     password: {
       type: String,
       required: true,
+      max: 1024,
+      min: 6,
     },
     subscriptions: [
       {
