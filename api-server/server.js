@@ -1,16 +1,18 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const dotenv = require("dotenv");
 
 const subscriptionsRoute = require("./routes/subscriptions");
 const adminsRoute = require("./routes/admins");
 
 const app = express();
+dotenv.config();
 
-const port = 3000;
+const port = process.env.PORT;
 
 // Database connection
-const dbName = "mobildeal";
-const dbURI = `mongodb://localhost:27017/${dbName}`;
+
+const dbURI = process.env.DB_CONNECT;
 
 mongoose.connect(dbURI, () => {
   console.log("Connected to database");
