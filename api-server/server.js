@@ -11,6 +11,7 @@ const dbURI = `mongodb://localhost:27017/${dbName}`;
 mongoose
   .connect(dbURI)
   .then((result) => app.listen(port))
+  .then(console.log(result))
   .catch((err) => console.log(err));
 
 app.get("/", (req, res) => {
