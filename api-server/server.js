@@ -5,24 +5,19 @@ const dotenv = require("dotenv");
 const subscriptionsRoute = require("./routes/subscriptions");
 const adminsRoute = require("./routes/admins");
 
-const app = express();
+const server = express();
 dotenv.config();
 
-const port = process.env.PORT;
-
 // Database connection
-
-const dbURI = process.env.DB_CONNECT;
-
-mongoose.connect(dbURI, () => {
+mongoose.connect(process.env.DB_CONNECT, () => {
   console.log("Connected to database");
 });
 
-app.use(express.json());
+server.use(express.json());
 
-app.use("/api/subscriptions", subscriptionsRoute);
-app.use("/api/admins", adminsRoute);
+server.use("/api/subscriptions", subscriptionsRoute);
+server.use("/api/admins", adminsRoute);
 
-app.listen(port, () => {
-  console.log(`Server is running on port: ${port}`);
+server.listen(process.env.PORT, () => {
+  console.log(`Server is running on port: ${process.env.PORT}`);
 });
