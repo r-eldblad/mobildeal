@@ -1,0 +1,15 @@
+.header {
+    font-size: 2rem;
+    padding: 2rem;
+}
+
+.sub-header {
+    font-size: 3rem;
+    margin-top: 5vh;
+    padding: 2rem;
+}
+
+.container {
+    max-width: 1600px;
+    margin: 0 auto;
+}

@@ -1,0 +1,10 @@
+label {
+}
+
+select {
+    margin-left: 1rem;
+    border-radius: 5px;
+    font-size: 1rem;
+    padding: 0.5rem;
+    width: 8vw;
+}

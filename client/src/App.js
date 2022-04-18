@@ -1,9 +1,15 @@
 import './App.css'
-
-function App() {
+import Sort from './components/Sort/Sort'
+import Table from './components/Subscriptions/Table'
+const App = () => {
     return (
         <>
-            <h1>Mobildeal</h1>
+            <div className="container">
+                <h1 className="header">Mobildeal.se</h1>
+                <h2 className="sub-header">Jämför mobilabonnemang</h2>
+                <Sort />
+                <Table />
+            </div>
         </>
     )
 }
