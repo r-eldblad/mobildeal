@@ -1,11 +1,14 @@
-.dropdown-menus {
-    display: flex;
+.sort-container {
+    background: #fbfbfb;
     border: 1px solid #c4c4c4;
-    padding: 5vh;
+    box-sizing: border-box;
     box-shadow: 5px 5px 4px -3px rgba(0, 0, 0, 0.15);
     border-radius: 6px;
+
+    display: flex;
+    padding: 5vh;
     font-weight: 700;
     margin-bottom: 2rem;
-    justify-content: space-between;
+    justify-content: space-evenly;
     flex-wrap: wrap;
 }

@@ -1,10 +1,13 @@
-label {
+.dropdowns {
 }
 
 select {
-    margin-left: 1rem;
+    background-color: red;
+    margin: 1rem;
+    width: 12rem;
+    height: 2rem;
+
+    background: #ffffff;
+    border: 2px solid #e6e6e6;
     border-radius: 5px;
-    font-size: 1rem;
-    padding: 0.5rem;
-    width: 8vw;
 }
