@@ -1,10 +1,10 @@
 table {
     table-layout: fixed;
-    width: 100%;
     margin-bottom: 4rem;
-
     border: 1px solid #c4c4c4;
     border-collapse: collapse;
+    width: 100%;
+    font-size: 1rem;
 }
 
 thead {
@@ -14,8 +14,8 @@ thead {
 
 th,
 td {
-    padding: 1rem;
     height: 5rem;
+    padding: 1rem;
 }
 
 th {
@@ -26,13 +26,54 @@ tr {
     border: 1px solid #c4c4c4;
 }
 
-button {
-    width: 7rem;
-    height: 3rem;
+.read-more {
     color: white;
     background: #005c68;
     border-radius: 5px;
     cursor: pointer;
     font-size: 1rem;
     font-weight: 500;
+    padding: 1rem;
+}
+
+@media screen and (max-width: 1225px) and (min-width: 1045px) {
+    .priority-5 {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 1045px) and (min-width: 835px) {
+    .priority-5 {
+        display: none;
+    }
+    .priority-4 {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 835px) and (min-width: 300px) {
+    .priority-5 {
+        display: none;
+    }
+    .priority-4 {
+        display: none;
+    }
+    .priority-3 {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 300px) {
+    .priority-5 {
+        display: none;
+    }
+    .priority-4 {
+        display: none;
+    }
+    .priority-3 {
+        display: none;
+    }
+    .priority-2 {
+        display: none;
+    }
 }

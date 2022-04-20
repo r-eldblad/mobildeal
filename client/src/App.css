@@ -12,4 +12,16 @@
 .container {
     max-width: 1600px;
     margin: 0 auto;
+    padding-bottom: 5vh;
+}
+
+@media screen and (max-width: 835px) {
+    .header {
+        text-align: center;
+    }
+
+    .sub-header {
+        text-align: center;
+        font-size: 1.5rem;
+    }
 }

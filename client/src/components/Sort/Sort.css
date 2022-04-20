@@ -10,3 +10,21 @@
     justify-content: space-evenly;
     flex-wrap: wrap;
 }
+
+@media screen and (max-width: 1225px) and (min-width: 1045px) {
+}
+
+@media screen and (max-width: 1045px) and (min-width: 835px) {
+}
+
+@media screen and (max-width: 835px) and (min-width: 300px) {
+    .checkboxes {
+        display: none;
+    }
+}
+
+@media screen and (max-width: 300px) {
+    .checkboxes {
+        display: none;
+    }
+}
