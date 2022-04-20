@@ -1,18 +1,22 @@
 import './App.css'
-import Sort from './components/Sort/Sort'
-import Table from './components/Subscriptions/Table'
-import Pagination from './components/Pagination/Pagination'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+
+import LoginPage from './pages/LoginPage/LoginPage'
+import HomePage from './pages/HomePage/HomePage'
+import AddSubscriptionPage from './pages/AddSubscriptionPage/AddSubscriptionPage'
+
 const App = () => {
     return (
-        <>
-            <div className="container">
-                <h1 className="header">Mobildeal.se</h1>
-                <h2 className="sub-header">Jämför mobilabonnemang</h2>
-                <Sort />
-                <Table />
-                <Pagination />
-            </div>
-        </>
+        <div className="container">
+            <h1 className="header">Mobildeal.se</h1>
+            <Router>
+                <Routes>
+                    <Route path="/" element={<HomePage />} />
+                    <Route path="/login" element={<LoginPage />} />
+                    <Route path="/subscriptions" element={<AddSubscriptionPage />} />
+                </Routes>
+            </Router>
+        </div>
     )
 }
 
