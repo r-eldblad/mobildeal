@@ -8,7 +8,7 @@
     background-color: #fff;
 }
 
-.pagination a {
+.pagination button {
     color: black;
     float: left;
     padding: 0.6vw 1vh;
@@ -18,12 +18,12 @@
     margin: 0 4px;
 }
 
-.pagination a.active {
+.pagination button.active {
     background-color: #005c68;
     color: #ffffff;
     border: 1px solid #c4c4c4;
 }
 
-.pagination a:hover:not(.active) {
+.pagination button:hover:not(.active) {
     background-color: #ddd;
 }

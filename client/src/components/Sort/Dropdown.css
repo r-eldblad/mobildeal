@@ -10,4 +10,5 @@ select {
 
 .dropdowns {
     background: #fbfbfb;
+    flex: 0 1 100px;
 }

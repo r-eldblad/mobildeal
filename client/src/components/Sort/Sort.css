@@ -1,24 +1,18 @@
 .sort-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
     background: #fbfbfb;
     border: 1px solid #c4c4c4;
     box-shadow: 5px 5px 4px -3px rgba(0, 0, 0, 0.15);
     border-radius: 6px;
-    display: flex;
     padding: 4vh;
     font-weight: 700;
     margin-bottom: 3rem;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
 }
 
 .checkboxes {
     background-color: #fbfbfb;
-}
-
-@media screen and (max-width: 1225px) and (min-width: 1045px) {
-}
-
-@media screen and (max-width: 1045px) and (min-width: 835px) {
 }
 
 @media screen and (max-width: 835px) and (min-width: 300px) {

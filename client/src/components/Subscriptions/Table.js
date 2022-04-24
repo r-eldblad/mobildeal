@@ -1,6 +1,6 @@
 import './Table.css'
 
-const Table = () => {
+const Table = (props) => {
     return (
         <>
             <table>
@@ -16,84 +16,32 @@ const Table = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td className="priority-1">Telia</td>
-                        <td className="priority-2">2GB</td>
-                        <td className="priority-3">24 mån</td>
-                        <td className="priority-4">Fria</td>
-                        <td className="priority-5">Fria</td>
-                        <td className="priority-6">99kr</td>
-                        <td>
-                            <button className="read-more" type="button">
-                                Läs mer
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className="priority-1">Telia</td>
-                        <td className="priority-2">2GB</td>
-                        <td className="priority-3">24 mån</td>
-                        <td className="priority-4">Fria</td>
-                        <td className="priority-5">Fria</td>
-                        <td className="priority-6">99kr</td>
-                        <td>
-                            <button className="read-more" type="button">
-                                Läs mer
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className="priority-1">Telia</td>
-                        <td className="priority-2">2GB</td>
-                        <td className="priority-3">24 mån</td>
-                        <td className="priority-4">Fria</td>
-                        <td className="priority-5">Fria</td>
-                        <td className="priority-6">99kr</td>
-                        <td>
-                            <button className="read-more" type="button">
-                                Läs mer
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className="priority-1">Telia</td>
-                        <td className="priority-2">2GB</td>
-                        <td className="priority-3">24 mån</td>
-                        <td className="priority-4">Fria</td>
-                        <td className="priority-5">Fria</td>
-                        <td className="priority-6">99kr</td>
-                        <td>
-                            <button className="read-more" type="button">
-                                Läs mer
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className="priority-1">Telia</td>
-                        <td className="priority-2">2GB</td>
-                        <td className="priority-3">24 mån</td>
-                        <td className="priority-4">Fria</td>
-                        <td className="priority-5">Fria</td>
-                        <td className="priority-6">99kr</td>
-                        <td>
-                            <button className="read-more" type="button">
-                                Läs mer
-                            </button>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td className="priority-1">Telia</td>
-                        <td className="priority-2">2GB</td>
-                        <td className="priority-3">24 mån</td>
-                        <td className="priority-4">Fria</td>
-                        <td className="priority-5">Fria</td>
-                        <td className="priority-6">99kr</td>
-                        <td>
-                            <button className="read-more" type="button">
-                                Läs mer
-                            </button>
-                        </td>
-                    </tr>
+                    {props.subscriptionsState
+                        .reverse()
+                        .slice(0, 6)
+                        .map((data) => {
+                            return (
+                                <>
+                                    <tr key={data._id}>
+                                        <td className="priority-1">{data.operator_name}</td>
+                                        <td className="priority-2">{data.surf_amount} GB</td>
+                                        <td className="priority-3">{data.binding_time} mån</td>
+                                        <td className="priority-4">
+                                            {data.free_calls ? 'Fria' : 'Ej fria'}
+                                        </td>
+                                        <td className="priority-5">
+                                            {data.free_sms ? 'Fria' : 'Ej fria'}
+                                        </td>
+                                        <td className="priority-6">{data.price} kr</td>
+                                        <td>
+                                            <button className="read-more" type="button">
+                                                Läs mer
+                                            </button>
+                                        </td>
+                                    </tr>
+                                </>
+                            )
+                        })}
                 </tbody>
             </table>
         </>
