@@ -1,10 +1,13 @@
 import './App.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+
 import { useState } from 'react'
 
 import LoginPage from './pages/LoginPage/LoginPage'
 import HomePage from './pages/HomePage/HomePage'
 import AddSubscriptionPage from './pages/AddSubscriptionPage/AddSubscriptionPage'
+
+import Header from './components/Header/Header'
 
 // Contexts
 import { LoginContext } from './contexts/LoginContext'
@@ -18,8 +21,8 @@ const App = () => {
         <div className="container">
             <LoginContext.Provider value={{ token, setToken }}>
                 <SubscriptionsContext.Provider value={{ subscriptions, setSubscriptions }}>
-                    <h1 className="header">Mobildeal.se</h1>
                     <Router>
+                        <Header />
                         <Routes>
                             <Route path="/" element={<HomePage />} />
                             <Route path="/login" element={<LoginPage />} />

@@ -7,7 +7,7 @@ import './LoginForm.css'
 import axios from 'axios'
 
 const LoginForm = () => {
-    const { token, setToken } = useContext(LoginContext)
+    const { setToken } = useContext(LoginContext)
 
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')

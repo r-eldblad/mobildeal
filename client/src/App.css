@@ -1,6 +1,5 @@
 .header {
     font-size: 2rem;
-    padding: 2rem;
 }
 
 .container {
@@ -12,4 +11,24 @@
 
 #root {
     background-color: #fff;
+}
+
+.flex-box {
+    display: flex;
+    justify-content: space-between;
+    background-color: white;
+}
+
+.login-btn {
+    width: 10rem;
+    height: 3rem;
+    background-color: #005c68;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.login-btn:hover {
+    background-color: #3d5c60;
 }
