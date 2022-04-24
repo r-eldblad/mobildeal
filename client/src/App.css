@@ -7,4 +7,9 @@
     max-width: 1600px;
     margin: 0 auto;
     padding-bottom: 5vh;
+    background-color: #fff;
+}
+
+#root {
+    background-color: #fff;
 }

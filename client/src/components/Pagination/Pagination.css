@@ -1,9 +1,11 @@
 .center {
     text-align: center;
+    background-color: #fff;
 }
 
 .pagination {
     display: inline-block;
+    background-color: #fff;
 }
 
 .pagination a {

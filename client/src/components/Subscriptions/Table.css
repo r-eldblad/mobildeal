@@ -20,6 +20,11 @@ td {
 
 th {
     text-align: start;
+    background: #fbfbfb;
+}
+
+td {
+    background: #fff;
 }
 
 tr {
