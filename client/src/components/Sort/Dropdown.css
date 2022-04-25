@@ -1,0 +1,14 @@
+select {
+    margin: 1rem;
+    width: 12rem;
+    height: 2rem;
+
+    background: #ffffff;
+    border: 2px solid #e6e6e6;
+    border-radius: 5px;
+}
+
+.dropdowns {
+    background: #fbfbfb;
+    flex: 0 1 100px;
+}

@@ -1,0 +1,23 @@
+.checkbox {
+    display: inline-block;
+    margin-top: 2rem;
+    margin-left: 2rem;
+    white-space: nowrap;
+}
+
+input[type='checkbox'] {
+    margin: 1rem;
+    width: 2rem;
+    height: 2rem;
+    vertical-align: middle;
+    flex-grow: 0;
+    accent-color: #005c68;
+    transition: background 300ms;
+    cursor: pointer;
+}
+
+/* Checked */
+
+[type='checkbox']:checked {
+    background-color: currentcolor;
+}
