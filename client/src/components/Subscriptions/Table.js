@@ -23,7 +23,12 @@ const Table = (props) => {
                             return (
                                 <>
                                     <tr key={data._id}>
-                                        <td className="priority-1">{data.operator_name}</td>
+                                        <td className="priority-1">
+                                            <img
+                                                src={data.operator_logo}
+                                                alt={data.operator_name}
+                                            />
+                                        </td>
                                         <td className="priority-2">{data.surf_amount} GB</td>
                                         <td className="priority-3">{data.binding_time} mån</td>
                                         <td className="priority-4">
@@ -32,7 +37,7 @@ const Table = (props) => {
                                         <td className="priority-5">
                                             {data.free_sms ? 'Fria' : 'Ej fria'}
                                         </td>
-                                        <td className="priority-6">{data.price} kr</td>
+                                        <td className="priority-6 price">{data.price} kr</td>
                                         <td>
                                             <button className="read-more" type="button">
                                                 Läs mer

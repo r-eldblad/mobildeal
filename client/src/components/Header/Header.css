@@ -1,16 +1,30 @@
 .header {
     font-size: 2rem;
     cursor: pointer;
+    margin: 0;
 }
 
 .flex-box {
     display: flex;
+    flex-wrap: wrap;
     justify-content: space-between;
+    background-color: white;
+    margin-top: 2vh;
+}
+
+.auth-buttons {
     background-color: white;
 }
 
 .login-btn,
 .logout-btn {
+    font-weight: 700;
+}
+
+.login-btn,
+.logout-btn,
+.control-panel {
+    margin-left: 2rem;
     width: 10rem;
     height: 3rem;
     background-color: #005c68;
@@ -21,6 +35,19 @@
 }
 
 .login-btn:hover,
-.logout-btn:hover {
+.logout-btn:hover,
+.control-panel:hover {
     background-color: #3d5c60;
+}
+
+@media screen and (max-width: 835px) {
+    .login-btn,
+    .logout-btn,
+    .control-panel {
+        display: none;
+    }
+
+    .header {
+        margin: 0 auto;
+    }
 }

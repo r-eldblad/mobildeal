@@ -1,8 +1,11 @@
+import EditSubscription from '../../components/EditSubscription/EditSubscription'
+
 const AddSubscriptionPage = () => {
     return (
-        <div>
-            <h1>Add Subscription Page</h1>
-        </div>
+        <>
+            <h1 className="sub-header">Lägg till, ändra, eller ta bort mobilabonnemang</h1>
+            <EditSubscription />
+        </>
     )
 }
 

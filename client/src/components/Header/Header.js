@@ -17,9 +17,13 @@ const Header = () => {
         navigate('/')
     }
 
+    const goToControlPanel = () => {
+        navigate('/subscriptions')
+    }
+
     const handleLogout = () => {
         setToken(null)
-        goToHome()
+        goToLogin()
     }
 
     return (
@@ -33,9 +37,14 @@ const Header = () => {
                     Logga in
                 </button>
             ) : (
-                <button className="logout-btn" onClick={handleLogout}>
-                    Logout
-                </button>
+                <div className="auth-buttons">
+                    <button className="control-panel" onClick={goToControlPanel}>
+                        Kontrollpanel
+                    </button>
+                    <button className="logout-btn" onClick={handleLogout}>
+                        Logga ut
+                    </button>
+                </div>
             )}
         </div>
     )

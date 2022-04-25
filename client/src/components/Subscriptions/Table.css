@@ -4,7 +4,7 @@ table {
     border: 1px solid #c4c4c4;
     border-collapse: collapse;
     width: 100%;
-    font-size: 1rem;
+    font-size: 1.3rem;
 }
 
 thead {
@@ -39,6 +39,16 @@ tr {
     font-size: 1rem;
     font-weight: 500;
     padding: 1rem;
+}
+
+.price {
+    font-weight: 700;
+}
+
+img {
+    width: 100%;
+    max-width: 7rem;
+    height: auto;
 }
 
 @media screen and (max-width: 1225px) and (min-width: 1045px) {
