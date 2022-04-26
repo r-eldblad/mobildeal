@@ -19,7 +19,7 @@ const LoginForm = () => {
         console.log(user)
 
         axios
-            .post('http://localhost:8080/api/admins/login', user)
+            .post(process.env.REACT_APP_LOGIN_URL, user)
             .then((response) => {
                 setToken(response.data)
                 navigate('/subscriptions')
