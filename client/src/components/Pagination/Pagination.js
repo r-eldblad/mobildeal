@@ -11,7 +11,9 @@ const Pagination = (props) => {
         <div className="center">
             <div className="pagination">
                 {pageNumbers.map((number) => (
-                    <button onClick={() => props.paginate(number)}>{number}</button>
+                    <button key={number} onClick={() => props.paginate(number)}>
+                        {number}
+                    </button>
                 ))}
             </div>
         </div>

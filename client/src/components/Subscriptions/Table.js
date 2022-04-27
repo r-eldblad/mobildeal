@@ -1,9 +1,7 @@
 import './Table.css'
 
 const Table = (props) => {
-    if (props.loading) {
-        return <h2>Loading...</h2>
-    }
+    console.log(props.subscriptionsState)
 
     return (
         <>
@@ -20,37 +18,27 @@ const Table = (props) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {props.subscriptionsState
-                        .reverse()
-                        .slice(0, 6)
-                        .map((data) => {
-                            return (
-                                <>
-                                    <tr key={data._id}>
-                                        <td className="priority-1">
-                                            <img
-                                                src={data.operator_logo}
-                                                alt={data.operator_name}
-                                            />
-                                        </td>
-                                        <td className="priority-2">{data.surf_amount} GB</td>
-                                        <td className="priority-3">{data.binding_time} mån</td>
-                                        <td className="priority-4">
-                                            {data.free_calls ? 'Fria' : 'Ej fria'}
-                                        </td>
-                                        <td className="priority-5">
-                                            {data.free_sms ? 'Fria' : 'Ej fria'}
-                                        </td>
-                                        <td className="priority-6 price">{data.price} kr</td>
-                                        <td>
-                                            <button className="read-more" type="button">
-                                                Läs mer
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </>
-                            )
-                        })}
+                    {props.subscriptionsState.reverse().map((data) => {
+                        return (
+                            <tr key={data._id}>
+                                <td className="priority-1">
+                                    <img src={data.operator_logo} alt={data.operator_name} />
+                                </td>
+                                <td className="priority-2">{data.surf_amount} GB</td>
+                                <td className="priority-3">{data.binding_time} mån</td>
+                                <td className="priority-4">
+                                    {data.free_calls ? 'Fria' : 'Ej fria'}
+                                </td>
+                                <td className="priority-5">{data.free_sms ? 'Fria' : 'Ej fria'}</td>
+                                <td className="priority-6 price">{data.price} kr</td>
+                                <td>
+                                    <button className="read-more" type="button">
+                                        Läs mer
+                                    </button>
+                                </td>
+                            </tr>
+                        )
+                    })}
                 </tbody>
             </table>
         </>

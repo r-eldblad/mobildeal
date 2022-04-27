@@ -10,18 +10,16 @@ import axios from 'axios'
 
 const HomePage = () => {
     const { subscriptions, setSubscriptions } = useContext(SubscriptionsContext)
-    const [loading, setLoading] = useState(false)
-    const [currentPage, setCurrentPage] = useState(1)
-    const [subscriptionsPerPage] = useState(1)
-
     useEffect(() => {
         axios.get(process.env.REACT_APP_GET_ALL_SUBSCRIPTIONS_URL).then((response) => {
             // handle success
-            setLoading(true)
+
             setSubscriptions(response.data)
-            setLoading(false)
         })
     }, [setSubscriptions])
+
+    const [currentPage, setCurrentPage] = useState(1)
+    const [subscriptionsPerPage] = useState(6)
 
     const indexOfLastPost = currentPage * subscriptionsPerPage
     const indexOfFirstPost = indexOfLastPost - subscriptionsPerPage
@@ -34,7 +32,7 @@ const HomePage = () => {
         <>
             <h2 className="sub-header">Jämför mobilabonnemang</h2>
             <Sort />
-            <Table subscriptionsState={currentSubscriptions} loading={loading} />
+            <Table subscriptionsState={currentSubscriptions} />
             <Pagination
                 subscriptionsPerPage={subscriptionsPerPage}
                 totalSubscriptions={subscriptions.length}
