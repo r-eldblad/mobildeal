@@ -1,7 +1,7 @@
 import './App.css'
-import { BrowserRouter as Router, Routes, Route, Navigate, Outlet } from 'react-router-dom'
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
-import { useState, useContext } from 'react'
+import { useState } from 'react'
 import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
 
 // Page imports

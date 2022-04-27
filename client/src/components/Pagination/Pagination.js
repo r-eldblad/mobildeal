@@ -1,19 +1,18 @@
 import './Pagination.css'
 
-const Pagination = () => {
+const Pagination = (props) => {
+    const pageNumbers = []
+
+    for (let i = 1; i <= Math.ceil(props.totalSubscriptions / props.subscriptionsPerPage); i++) {
+        pageNumbers.push(i)
+    }
+
     return (
         <div className="center">
             <div className="pagination">
-                <button href="#">&laquo;</button>
-                <button href="#" className="active">
-                    1
-                </button>
-                <button>2</button>
-                <button>3</button>
-                <button>4</button>
-                <button>5</button>
-                <button>6</button>
-                <button>&raquo;</button>
+                {pageNumbers.map((number) => (
+                    <button onClick={() => props.paginate(number)}>{number}</button>
+                ))}
             </div>
         </div>
     )

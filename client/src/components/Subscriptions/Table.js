@@ -1,6 +1,10 @@
 import './Table.css'
 
 const Table = (props) => {
+    if (props.loading) {
+        return <h2>Loading...</h2>
+    }
+
     return (
         <>
             <table>
