@@ -17,7 +17,7 @@ const Table = (props) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {props.subscriptionsState.reverse().map((data) => {
+                        {props.subscriptionsState.map((data) => {
                             return (
                                 <tr key={data._id}>
                                     <td className="priority-1">
@@ -59,7 +59,7 @@ const Table = (props) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {props.filteredSubscriptions.reverse().map((data) => {
+                    {props.filteredSubscriptions.map((data) => {
                         return (
                             <tr key={data._id}>
                                 <td className="priority-1">

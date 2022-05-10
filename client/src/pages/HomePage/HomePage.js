@@ -4,16 +4,14 @@ import '../../components/Dropdown/Dropdown.css'
 import Table from '../../components/Subscriptions/Table'
 import Sort from '../../components/Sort/Sort'
 
-import { useContext, useEffect, useState } from 'react'
+import { useContext, useEffect } from 'react'
 import { SubscriptionsContext } from '../../contexts/SubscriptionsContext'
 import { FilteredSubscriptionsContext } from '../../contexts/FilteredSubscriptionsContext'
 import axios from 'axios'
 
 const HomePage = () => {
     const { subscriptions, setSubscriptions } = useContext(SubscriptionsContext)
-    const { filteredSubscriptions, setFilteredSubscriptions } = useContext(
-        FilteredSubscriptionsContext
-    )
+    const { filteredSubscriptions } = useContext(FilteredSubscriptionsContext)
 
     useEffect(() => {
         axios.get(process.env.REACT_APP_GET_ALL_SUBSCRIPTIONS_URL).then((response) => {
