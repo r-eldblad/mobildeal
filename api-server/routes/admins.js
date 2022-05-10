@@ -2,6 +2,12 @@ const router = require("express").Router();
 const Admin = require("../models/admin");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+const verifyToken = require("../middlewares/verifyToken");
+
+router.get("/", verifyToken, async (req, res) => {
+  const admin = await Admin.findById(req["user"]);
+  res.send(admin);
+});
 
 router.post("/register", async (req, res) => {
   const emailExist = await Admin.findOne({ email: req.body.email });
