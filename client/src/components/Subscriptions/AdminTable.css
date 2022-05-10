@@ -1,0 +1,20 @@
+.delete-btn {
+    color: #fff;
+    background: #6b0000;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    margin-left: 1rem;
+    padding: 0.8rem;
+}
+
+.edit-btn {
+    color: #fff;
+    background: #005c68;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 0.8rem;
+}
