@@ -9,9 +9,12 @@ const EditSubscription = () => {
     const [currentPage, setCurrentPage] = useState(1)
     const [subscriptionsPerPage] = useState(6)
 
-    const indexOfLastPost = currentPage * subscriptionsPerPage
-    const indexOfFirstPost = indexOfLastPost - subscriptionsPerPage
-    const currentSubscriptions = subscriptions.slice(indexOfFirstPost, indexOfLastPost)
+    const indexOfLastSubscription = currentPage * subscriptionsPerPage
+    const indexOfFirstSubscription = indexOfLastSubscription - subscriptionsPerPage
+    const currentSubscriptions = subscriptions.slice(
+        indexOfFirstSubscription,
+        indexOfLastSubscription
+    )
 
     const paginate = (pageNumber) => setCurrentPage(pageNumber)
     console.log(subscriptions.length)

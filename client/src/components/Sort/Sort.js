@@ -1,27 +1,26 @@
 import './Sort.css'
-import { useState } from 'react'
-import Dropdown from './Dropdown'
-import Checkbox from './Checkbox'
+import Dropdown from '../Dropdown/Dropdown'
+
+import { useContext, useState } from 'react'
+import { SubscriptionsContext } from '../../contexts/SubscriptionsContext'
+import { FilteredSubscriptionsContext } from '../../contexts/FilteredSubscriptionsContext'
 
 const Sort = () => {
-    // Dropdowns states
-    const [operators, setOperators] = useState('operator')
-    const [mobileNetworks, setMobileNetworks] = useState('mobile-network')
-    const [surfAmounts, setSurfAmounts] = useState('surf-amount')
-    const [sort, setSort] = useState('sort')
+    const { subscriptions } = useContext(SubscriptionsContext)
+    const { setFilteredSubscriptions } = useContext(FilteredSubscriptionsContext)
 
-    // Checkboxes states
-    const [saveSurfChecked, setSaveSurfChecked] = useState(false)
-    const [embeddedSimChecked, setEmbeddedSimChecked] = useState(false)
-    const [freeSmsChecked, setFreeSmsChecked] = useState(false)
-    const [freeCallsChecked, setFreeCallsChecked] = useState(false)
+    const [operators, setOperators] = useState('')
 
-    // Dropdowns handle functions
     const handleOperatorChange = (event) => {
         setOperators(event.target.value)
+        const filteredItems = subscriptions.filter((subscription) => {
+            return subscription.operator_name.toLowerCase().includes(event.target.value)
+        })
+
+        setFilteredSubscriptions(filteredItems)
     }
 
-    const handleMobileNetworks = (event) => {
+    /*     const handleMobileNetworks = (event) => {
         setMobileNetworks(event.target.value)
     }
 
@@ -49,7 +48,7 @@ const Sort = () => {
 
     const handleFreeCallsChanged = () => {
         setFreeCallsChecked(!freeCallsChecked)
-    }
+    } */
 
     return (
         <>
@@ -58,6 +57,7 @@ const Sort = () => {
                     className="dropdown"
                     label="Operatör"
                     options={[
+                        { label: '', value: '' },
                         { label: 'Telia', value: 'telia' },
                         { label: 'Hallon', value: 'hallon' },
                         { label: 'Comviq', value: 'comviq' },
@@ -69,7 +69,8 @@ const Sort = () => {
                     value={operators}
                     onChange={handleOperatorChange}
                 />
-                <Dropdown
+            </div>
+            {/*  <Dropdown
                     label="Mobilnät"
                     options={[
                         { label: 'Telia', value: 'telia' },
@@ -126,7 +127,7 @@ const Sort = () => {
                         onChange={handleFreeCallsChanged}
                     />
                 </div>
-            </div>
+            </div> */}
         </>
     )
 }
