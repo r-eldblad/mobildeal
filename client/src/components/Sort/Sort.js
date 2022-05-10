@@ -1,54 +1,47 @@
 import './Sort.css'
-import { useState } from 'react'
-import Dropdown from './Dropdown'
-import Checkbox from './Checkbox'
+import Dropdown from '../Dropdown/Dropdown'
+
+import { useContext, useState } from 'react'
+import { SubscriptionsContext } from '../../contexts/SubscriptionsContext'
+import { FilteredSubscriptionsContext } from '../../contexts/FilteredSubscriptionsContext'
 
 const Sort = () => {
-    // Dropdowns states
-    const [operators, setOperators] = useState('operator')
-    const [mobileNetworks, setMobileNetworks] = useState('mobile-network')
-    const [surfAmounts, setSurfAmounts] = useState('surf-amount')
-    const [sort, setSort] = useState('sort')
+    const { subscriptions } = useContext(SubscriptionsContext)
+    const { setFilteredSubscriptions } = useContext(FilteredSubscriptionsContext)
 
-    // Checkboxes states
-    const [saveSurfChecked, setSaveSurfChecked] = useState(false)
-    const [embeddedSimChecked, setEmbeddedSimChecked] = useState(false)
-    const [freeSmsChecked, setFreeSmsChecked] = useState(false)
-    const [freeCallsChecked, setFreeCallsChecked] = useState(false)
+    const [operators, setOperators] = useState('')
+    const [sort, setSort] = useState('')
+    const [surfAmount, setSurfAmount] = useState('')
 
-    // Dropdowns handle functions
     const handleOperatorChange = (event) => {
         setOperators(event.target.value)
-    }
+        const filteredItems = subscriptions.filter((subscription) => {
+            return subscription.operator_name.toLowerCase().includes(event.target.value)
+        })
 
-    const handleMobileNetworks = (event) => {
-        setMobileNetworks(event.target.value)
+        setFilteredSubscriptions(filteredItems)
+
+        console.log(filteredItems)
     }
 
     const handleSurfAmounts = (event) => {
-        setSurfAmounts(event.target.value)
+        setSurfAmount(event.target.value)
+        const filteredItems = subscriptions.filter((subscription) => {
+            return subscription.surf_amount >= event.target.value
+        })
+
+        setFilteredSubscriptions(filteredItems)
     }
 
     const handleSort = (event) => {
         setSort(event.target.value)
-    }
+        if (event.target.value === 'price') {
+            const filteredItems = subscriptions.sort((a, b) => {
+                return a.price - b.price
+            })
 
-    // Checkboxes handle functions
-
-    const handleSaveSurfChanged = () => {
-        setSaveSurfChecked(!saveSurfChecked)
-    }
-
-    const handleEmbeddedSimChanged = () => {
-        setEmbeddedSimChecked(!embeddedSimChecked)
-    }
-
-    const handleFreeSmsChanged = () => {
-        setFreeSmsChecked(!freeSmsChecked)
-    }
-
-    const handleFreeCallsChanged = () => {
-        setFreeCallsChecked(!freeCallsChecked)
+            setFilteredSubscriptions(filteredItems)
+        }
     }
 
     return (
@@ -58,6 +51,7 @@ const Sort = () => {
                     className="dropdown"
                     label="Operatör"
                     options={[
+                        { label: '', value: '' },
                         { label: 'Telia', value: 'telia' },
                         { label: 'Hallon', value: 'hallon' },
                         { label: 'Comviq', value: 'comviq' },
@@ -69,42 +63,34 @@ const Sort = () => {
                     value={operators}
                     onChange={handleOperatorChange}
                 />
-                <Dropdown
-                    label="Mobilnät"
-                    options={[
-                        { label: 'Telia', value: 'telia' },
-                        { label: 'Telenor', value: 'telenor' },
-                        { label: 'Tele2', value: 'tele-2' },
-                        { label: 'Tre', value: 'tre' },
-                    ]}
-                    value={mobileNetworks}
-                    onChange={handleMobileNetworks}
-                />
+
                 <Dropdown
                     label="Surf"
                     options={[
-                        { label: '2GB+', value: '2-gb' },
-                        { label: '5GB+', value: '5-gb' },
-                        { label: '10GB+', value: '10-gb' },
-                        { label: '25GB+', value: '25-gb' },
-                        { label: '40GB+', value: '40-gb' },
-                        { label: '60GB+', value: '60-gb' },
+                        { label: '', value: '' },
+                        { label: '2GB+', value: '2' },
+                        { label: '5GB+', value: '5' },
+                        { label: '10GB+', value: '10' },
+                        { label: '25GB+', value: '25' },
+                        { label: '40GB+', value: '40' },
+                        { label: '60GB+', value: '60' },
                     ]}
-                    value={surfAmounts}
+                    value={surfAmount}
                     onChange={handleSurfAmounts}
                 />
 
                 <Dropdown
                     label="Sortera efter"
                     options={[
+                        { label: '', value: '' },
                         { label: 'Pris/månad', value: 'price' },
-                        { label: 'Surf', value: 'surf-amount' },
                     ]}
                     value={sort}
                     onChange={handleSort}
                 />
+            </div>
 
-                <div className="checkboxes">
+            {/*                 <div className="checkboxes">
                     <Checkbox
                         label="Spara surf"
                         value={saveSurfChecked}
@@ -126,7 +112,7 @@ const Sort = () => {
                         onChange={handleFreeCallsChanged}
                     />
                 </div>
-            </div>
+            </div> */}
         </>
     )
 }
