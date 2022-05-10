@@ -26,14 +26,14 @@ const EditSubscription = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        /*         axios
-            .get('', {
+        axios
+            .get('localhost:8080/api/admins', {
                 headers: { 'auth-token': token },
             })
             .then((response) => {
                 setCurrentUser(response.data)
                 console.log(currentUser)
-            }) */
+            })
 
         const subscription = {
             operatorName,
