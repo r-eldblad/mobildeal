@@ -5,27 +5,32 @@ const Subscription = require('../models/subscription')
 
 // adds a new subscription
 router.post('/add-subscription', verifyToken, async (req, res) => {
-    const subscription = await new Subscription({
-        operator_name: req.body.operator_name,
-        operator_logo: req.body.operator_logo,
-        affiliate_link: req.body.affiliate_link,
-        surf_amount: req.body.surf_amount,
-        binding_time: req.body.binding_time,
-        free_sms: req.body.free_sms,
-        free_calls: req.body.free_calls,
-        price: req.body.price,
-        initial_price: req.body.initial_price,
-        reduced_price_months: req.body.reduced_price_months,
-        admin: req.body.adminId,
-    })
+    try {
+        const subscription = await new Subscription({
+            operator_name: req.body.operator_name,
+            operator_logo: req.body.operator_logo,
+            affiliate_link: req.body.affiliate_link,
+            surf_amount: req.body.surf_amount,
+            binding_time: req.body.binding_time,
+            free_sms: req.body.free_sms,
+            free_calls: req.body.free_calls,
+            price: req.body.price,
+            initial_price: req.body.initial_price,
+            reduced_price_months: req.body.reduced_price_months,
+            admin: req.body.adminId,
+        })
 
-    await Admin.findOneAndUpdate(
-        { _id: subscription.admin },
-        { $push: { subscriptions: subscription._id } }
-    )
+        await Admin.findOneAndUpdate(
+            { _id: subscription.admin },
+            { $push: { subscriptions: subscription._id } }
+        )
 
-    await subscription.save()
-    res.send('Subscription was added successfully!')
+        await subscription.save()
+        res.send('Abonnemanget lades till')
+    } catch (err) {
+        res.send('Du måste fylla i alla fälten.')
+        res.status(400)
+    }
 })
 
 // fetches all subscriptions from the database
@@ -50,7 +55,7 @@ router.delete('/delete/:id', async (req, res) => {
         )
 
         await Subscription.deleteOne({ _id: req.params.id })
-        res.send('Post was deleted successfully!')
+        res.send('Abonnemanget raderades.')
     } catch (err) {
         res.status(400).send(err)
     }
