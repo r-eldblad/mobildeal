@@ -41,7 +41,7 @@ const EditSubscription = () => {
             })
             .then((response) => {
                 setCurrentUserId(response.data)
-                console.log(currentUserId._id)
+                console.log(currentUserId._id)    
             })
 
         const subscription = {
