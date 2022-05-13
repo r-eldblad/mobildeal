@@ -5,7 +5,7 @@ const AdminTable = (props) => {
         <>
             <table>
                 <thead>
-                    <tr>
+                    <tr className="table-head-row">
                         <th className="priority-1">Operatör</th>
                         <th className="priority-2">Surfmängd</th>
                         <th className="priority-3">Bindningstid</th>
@@ -30,10 +30,11 @@ const AdminTable = (props) => {
                                 <td className="priority-5">{data.free_sms ? 'Fria' : 'Ej fria'}</td>
                                 <td className="priority-6 price">{data.price} kr</td>
                                 <td className="actions">
-                                    <button className="edit-btn" type="button">
-                                        Ändra
-                                    </button>
-                                    <button className="delete-btn" type="button">
+                                    <button
+                                        className="delete-btn"
+                                        type="button"
+                                        onClick={() => props.handleDelete(data._id)}
+                                    >
                                         Ta bort
                                     </button>
                                 </td>

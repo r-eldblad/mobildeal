@@ -1,3 +1,5 @@
+import './EditSubscription.css'
+
 import { useContext, useState, useEffect, useCallback } from 'react'
 import { SubscriptionsContext } from '../../contexts/SubscriptionsContext'
 import { LoginContext } from '../../contexts/LoginContext'
@@ -41,7 +43,7 @@ const EditSubscription = () => {
             })
             .then((response) => {
                 setCurrentUserId(response.data)
-                console.log(currentUserId._id)    
+                console.log(currentUserId._id)
             })
 
         const subscription = {
@@ -72,116 +74,143 @@ const EditSubscription = () => {
             })
     }
 
+    const handleDelete = (subscriptionId) => {
+        axios
+            .delete(process.env.REACT_APP_DELETE_SUBSCRIPTION + '/' + subscriptionId, {
+                headers: { 'auth-token': token },
+            })
+            .then((res) => {
+                const del = subscriptions.filter(
+                    (subscription) => subscriptionId !== subscription._id
+                )
+                setSubscriptions(del)
+                getAllSubscriptions()
+            })
+    }
+
     if (token) {
         return (
             <>
                 {/* Form will go here */}
-                <div className="sort-container">
+                <div className="add-subscription-container">
                     <form onSubmit={handleSubmit}>
                         <div>
-                            <div>
-                                <label htmlFor="operator">Operatör: </label>
-                                <input
-                                    type="text"
-                                    name="operator"
-                                    id="operator"
-                                    onChange={(e) => setOperatorName(e.target.value)}
-                                />
-                            </div>
+                            <label htmlFor="operator">
+                                Operatör: <i>(Namnet på operatören)</i>
+                            </label>
+                            <input
+                                type="text"
+                                name="operator"
+                                id="operator"
+                                onChange={(e) => setOperatorName(e.target.value)}
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="logo">
+                                Logotyp: <i>(URL/sökväg till bild)</i>
+                            </label>
+                            <input
+                                type="text"
+                                name="logo"
+                                id="logo"
+                                onChange={(e) => setOperatorLogo(e.target.value)}
+                            />
+                        </div>
+                        <div>
+                            <label>
+                                Affiliate länk: <i>(URL)</i>
+                            </label>
+                            <input
+                                type="text"
+                                name="affiliate_link"
+                                id="affiliate_link"
+                                onChange={(e) => setAffiliateLink(e.target.value)}
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="binding_time">
+                                Bindningstid: <i>(Nummer)</i>{' '}
+                            </label>
+                            <input
+                                type="text"
+                                name="binding_time"
+                                id="binding_time"
+                                onChange={(e) => setBindingTime(e.target.value)}
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="surf_amount">
+                                Surfmängd: <i>(Nummer)</i>
+                            </label>
+                            <input
+                                type="text"
+                                name="surf_amount"
+                                id="surf_amount"
+                                onChange={(e) => setSurfAmount(e.target.value)}
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="free_sms">
+                                Fria sms:<i> (Lämna tomt ifall fria sms)</i>
+                            </label>
+                            <input
+                                type="text"
+                                name="free_sms"
+                                id="free_sms"
+                                onChange={(e) => setFreeSms(e.target.value)}
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="free_calls">
+                                Fria samtal: <i> (Lämna tomt ifall fria samtal)</i>
+                            </label>
+                            <input
+                                type="text"
+                                name="free_calls"
+                                id="free_calls"
+                                onChange={(e) => setFreeCalls(e.target.value)}
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="price">
+                                Pris: <i> (Nummer)</i>
+                            </label>
+                            <input
+                                type="text"
+                                name="price"
+                                id="price"
+                                onChange={(e) => setPrice(e.target.value)}
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="initial_price">
+                                Ursprungliga priset:<i> (Nummer)</i>
+                            </label>
+                            <input
+                                type="text"
+                                name="initial_price"
+                                id="initial_price"
+                                onChange={(e) => setInitialPrice(e.target.value)}
+                            />
+                        </div>
+                        <div>
+                            <label htmlFor="months_reduced_price">
+                                Månader / nedsatt pris: <i>(Nummer)</i>
+                            </label>
+                            <input
+                                type="text"
+                                name="months_reduced_price"
+                                id="months_reduced_price"
+                                onChange={(e) => setReducedPriceMonths(e.target.value)}
+                            />
+                        </div>
 
-                            <div>
-                                <label htmlFor="logo">Logotyp: </label>
-                                <input
-                                    type="text"
-                                    name="logo"
-                                    id="logo"
-                                    onChange={(e) => setOperatorLogo(e.target.value)}
-                                />
-                            </div>
-
-                            <div>
-                                <label>Affiliate länk: </label>
-                                <input
-                                    type="text"
-                                    name="affiliate_link"
-                                    id="affiliate_link"
-                                    onChange={(e) => setAffiliateLink(e.target.value)}
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor="binding_time">Bindningstid: </label>
-                                <input
-                                    type="text"
-                                    name="binding_time"
-                                    id="binding_time"
-                                    onChange={(e) => setBindingTime(e.target.value)}
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor="surf_amount">Surfmängd: </label>
-                                <input
-                                    type="text"
-                                    name="surf_amount"
-                                    id="surf_amount"
-                                    onChange={(e) => setSurfAmount(e.target.value)}
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor="free_sms">Fria sms: </label>
-                                <input
-                                    type="text"
-                                    name="free_sms"
-                                    id="free_sms"
-                                    onChange={(e) => setFreeSms(e.target.value)}
-                                />
-                            </div>
-
-                            <div>
-                                <label htmlFor="free_calls">Fria samtal: </label>
-                                <input
-                                    type="text"
-                                    name="free_calls"
-                                    id="free_calls"
-                                    onChange={(e) => setFreeCalls(e.target.value)}
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor="price">Pris: </label>
-                                <input
-                                    type="text"
-                                    name="price"
-                                    id="price"
-                                    onChange={(e) => setPrice(e.target.value)}
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor="initial_price">Ursprungliga priset: </label>
-                                <input
-                                    type="text"
-                                    name="initial_price"
-                                    id="initial_price"
-                                    onChange={(e) => setInitialPrice(e.target.value)}
-                                />
-                            </div>
-                            <div>
-                                <label htmlFor="months_reduced_price">
-                                    Månader / nedsatt pris:{' '}
-                                </label>
-                                <input
-                                    type="text"
-                                    name="months_reduced_price"
-                                    id="months_reduced_price"
-                                    onChange={(e) => setReducedPriceMonths(e.target.value)}
-                                />
-                            </div>
-
-                            <div className="center">
-                                <button type="submit">Lägg till</button>
-                            </div>
+                        <div>
+                            <button type="submit">Lägg till</button>
                         </div>
                     </form>
                 </div>
-                <AdminTable subscriptionsState={subscriptions} />
+                <AdminTable subscriptionsState={subscriptions} handleDelete={handleDelete} />
             </>
         )
     } else {
