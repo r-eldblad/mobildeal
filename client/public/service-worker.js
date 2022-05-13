@@ -16,14 +16,9 @@ self.addEventListener('install', (event) => {
 // Listen for requests
 self.addEventListener('fetch', (event) => {
     event.respondWith(
-        caches
-            .match(event.request)
-            .then(() => {
-                return fetch(event.request).catch((err) => caches.match('offline.html'))
-            })
-            .then(() => {
-                return fetch(event.request).catch((err) => caches.match('offline.css'))
-            })
+        caches.match(event.request).then(() => {
+            return fetch(event.request).catch((err) => caches.match('offline.html'))
+        })
     )
 })
 
