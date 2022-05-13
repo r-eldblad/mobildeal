@@ -6,7 +6,7 @@ const Table = (props) => {
             <>
                 <table>
                     <thead>
-                        <tr>
+                        <tr className="table-head-row">
                             <th className="priority-1">Operatör</th>
                             <th className="priority-2">Surfmängd</th>
                             <th className="priority-3">Bindningstid</th>
@@ -48,7 +48,7 @@ const Table = (props) => {
         <>
             <table>
                 <thead>
-                    <tr>
+                    <tr className="table-head-row">
                         <th className="priority-1">Operatör</th>
                         <th className="priority-2">Surfmängd</th>
                         <th className="priority-3">Bindningstid</th>
