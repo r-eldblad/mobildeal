@@ -7,9 +7,6 @@ const Subscription = require('../models/subscription')
 router.post('/add-subscription', verifyToken, async (req, res) => {
     try {
         const subscription = await new Subscription({
-            operator_name: req.body.operator_name,
-            operator_logo: req.body.operator_logo,
-            affiliate_link: req.body.affiliate_link,
             surf_amount: req.body.surf_amount,
             binding_time: req.body.binding_time,
             free_sms: req.body.free_sms,
