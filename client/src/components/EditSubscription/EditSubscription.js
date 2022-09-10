@@ -6,14 +6,15 @@ import { LoginContext } from '../../contexts/LoginContext'
 import AdminTable from '../Subscriptions/AdminTable'
 
 import axios from 'axios'
+import { OperatorsContext } from '../../contexts/OperatorsContext'
+import { Dropdown } from 'bootstrap'
+import ChooseOperatorDropdown from '../ChooeOperatorDropdown/ChooseOperatorDropdown'
 
 const EditSubscription = () => {
     const { subscriptions, setSubscriptions } = useContext(SubscriptionsContext)
     const { token } = useContext(LoginContext)
+    const { operators, setOperators } = useContext(OperatorsContext)
 
-    const [operatorName, setOperatorName] = useState('')
-    const [operatorLogo, setOperatorLogo] = useState('')
-    const [affiliateLink, setAffiliateLink] = useState('')
     const [surfAmount, setSurfAmount] = useState()
     const [bindingTime, setBindingTime] = useState()
     const [freeSms, setFreeSms] = useState(false)
@@ -30,9 +31,27 @@ const EditSubscription = () => {
         })
     }, [setSubscriptions])
 
+    const getAllOperators = useCallback(() => {
+        axios.get(process.env.REACT_APP_FETCH_OPERATORS).then((response) => {
+            setOperators(response.data)
+        })
+    }, [setOperators])
+
     useEffect(() => {
         getAllSubscriptions()
-    }, [getAllSubscriptions])
+        getAllOperators()
+    }, [getAllSubscriptions, getAllOperators])
+
+    /*   const handleOperatorChange = (e) => {
+        const filterCustomers = operators.filter((operator) => {
+
+
+            return operator.operator_name.includes(event.target.value);
+          });
+      
+          set(filterCustomers);
+          console.log(selectedCustomer);
+    } */
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -47,9 +66,6 @@ const EditSubscription = () => {
             })
 
         const subscription = {
-            operator_name: operatorName,
-            operator_logo: operatorLogo,
-            affiliate_link: affiliateLink,
             surf_amount: surfAmount,
             binding_time: bindingTime,
             free_sms: freeSms,
@@ -94,7 +110,9 @@ const EditSubscription = () => {
                 {/* Form will go here */}
                 <div className="add-subscription-container">
                     <form onSubmit={handleSubmit}>
-                        <div>
+                        <ChooseOperatorDropdown />
+
+                        {/*    <div>
                             <label htmlFor="operator">
                                 Operatör: <i>(Namnet på operatören)</i>
                             </label>
@@ -126,7 +144,7 @@ const EditSubscription = () => {
                                 id="affiliate_link"
                                 onChange={(e) => setAffiliateLink(e.target.value)}
                             />
-                        </div>
+                        </div> */}
                         <div>
                             <label htmlFor="binding_time">
                                 Bindningstid: <i>(Nummer)</i>{' '}
