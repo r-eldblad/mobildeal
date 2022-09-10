@@ -110,8 +110,10 @@ const EditSubscription = () => {
                 {/* Form will go here */}
                 <div className="add-subscription-container">
                     <form onSubmit={handleSubmit}>
-                        <ChooseOperatorDropdown />
-
+                        <label>
+                            Välj operatör:
+                            <ChooseOperatorDropdown />
+                        </label>
                         {/*    <div>
                             <label htmlFor="operator">
                                 Operatör: <i>(Namnet på operatören)</i>

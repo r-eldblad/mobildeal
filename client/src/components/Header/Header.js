@@ -32,11 +32,7 @@ const Header = () => {
                 Mobildeal.se
             </h1>
 
-            {!token ? (
-                <button className="login-btn" onClick={goToLogin}>
-                    Logga in
-                </button>
-            ) : (
+            {token ? (
                 <div className="auth-buttons">
                     <button className="control-panel" onClick={goToControlPanel}>
                         Kontrollpanel
@@ -45,6 +41,8 @@ const Header = () => {
                         Logga ut
                     </button>
                 </div>
+            ) : (
+                <div></div>
             )}
         </div>
     )
