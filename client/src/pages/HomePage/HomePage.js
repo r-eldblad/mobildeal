@@ -6,17 +6,18 @@ import Sort from '../../components/Sort/Sort'
 
 import { useContext, useEffect } from 'react'
 import { SubscriptionsContext } from '../../contexts/SubscriptionsContext'
-import { FilteredSubscriptionsContext } from '../../contexts/FilteredSubscriptionsContext'
+/* import { FilteredSubscriptionsContext } from '../../contexts/FilteredSubscriptionsContext' */
 import axios from 'axios'
 
 const HomePage = () => {
     const { subscriptions, setSubscriptions } = useContext(SubscriptionsContext)
-    const { filteredSubscriptions } = useContext(FilteredSubscriptionsContext)
+    /*     const { filteredSubscriptions } = useContext(FilteredSubscriptionsContext) */
 
     useEffect(() => {
         axios.get(process.env.REACT_APP_GET_ALL_SUBSCRIPTIONS_URL).then((response) => {
             // handle success
             setSubscriptions(response.data)
+            console.log(subscriptions)
         })
     }, [setSubscriptions])
 
@@ -29,7 +30,7 @@ const HomePage = () => {
             {/* <Sort /> */}
             <Table
                 subscriptionsState={subscriptions}
-                filteredSubscriptions={filteredSubscriptions}
+                /*    filteredSubscriptions={filteredSubscriptions} */
             />
         </>
     )

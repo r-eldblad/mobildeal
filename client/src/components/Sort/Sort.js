@@ -1,12 +1,8 @@
 import './Sort.css'
 import Dropdown from '../Dropdown/Dropdown'
 
-import { useContext, useState } from 'react'
-import { SubscriptionsContext } from '../../contexts/SubscriptionsContext'
-import { FilteredSubscriptionsContext } from '../../contexts/FilteredSubscriptionsContext'
-
 const Sort = () => {
-    const { subscriptions } = useContext(SubscriptionsContext)
+    /*   const { subscriptions } = useContext(SubscriptionsContext)
     const { setFilteredSubscriptions } = useContext(FilteredSubscriptionsContext)
 
     const [operators, setOperators] = useState('')
@@ -43,7 +39,7 @@ const Sort = () => {
             setFilteredSubscriptions(filteredItems)
         }
     }
-
+ */
     return (
         <>
             <div className="sort-container">
@@ -60,8 +56,8 @@ const Sort = () => {
                         { label: 'Vimla', value: 'vimla' },
                         { label: 'Tre', value: 'tre' },
                     ]}
-                    value={operators}
-                    onChange={handleOperatorChange}
+                    /*       value={operators}
+                    onChange={handleOperatorChange} */
                 />
 
                 <Dropdown
@@ -75,8 +71,8 @@ const Sort = () => {
                         { label: '40GB+', value: '40' },
                         { label: '60GB+', value: '60' },
                     ]}
-                    value={surfAmount}
-                    onChange={handleSurfAmounts}
+                    /*     value={surfAmount}
+                    onChange={handleSurfAmounts} */
                 />
 
                 <Dropdown
@@ -85,34 +81,10 @@ const Sort = () => {
                         { label: '', value: '' },
                         { label: 'Pris/månad', value: 'price' },
                     ]}
-                    value={sort}
-                    onChange={handleSort}
+                    /*             value={sort}
+                    onChange={handleSort} */
                 />
             </div>
-
-            {/*                 <div className="checkboxes">
-                    <Checkbox
-                        label="Spara surf"
-                        value={saveSurfChecked}
-                        onChange={handleSaveSurfChanged}
-                    />
-                    <Checkbox
-                        label="E-sim"
-                        value={embeddedSimChecked}
-                        onChange={handleEmbeddedSimChanged}
-                    />
-                    <Checkbox
-                        label="Fria sms"
-                        value={freeSmsChecked}
-                        onChange={handleFreeSmsChanged}
-                    />
-                    <Checkbox
-                        label="Fria samtal"
-                        value={freeCallsChecked}
-                        onChange={handleFreeCallsChanged}
-                    />
-                </div>
-            </div> */}
         </>
     )
 }

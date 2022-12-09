@@ -7,7 +7,6 @@ const verifyToken = require('../middlewares/verifyToken')
 // Add new operator
 router.post('/add-operator', async (req, res) => {
     const operator = await new Operator({
-        _id: mongoose.Types.ObjectId(),
         operator_name: req.body.operator_name,
         operator_logo: req.body.operator_logo,
         affiliate_link: req.body.affiliate_link,
@@ -29,6 +28,11 @@ router.post('/add-operator', async (req, res) => {
 router.get('/all', async (req, res) => {
     const operators = await Operator.find()
     res.send(operators)
+})
+
+router.get('/:id', async (req, res) => {
+    const subscription = await Operator.findById(req.params.id)
+    res.json(subscription)
 })
 
 module.exports = router

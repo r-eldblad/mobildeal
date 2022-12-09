@@ -7,7 +7,6 @@ import AdminTable from '../Subscriptions/AdminTable'
 
 import axios from 'axios'
 import { OperatorsContext } from '../../contexts/OperatorsContext'
-import { Dropdown } from 'bootstrap'
 import ChooseOperatorDropdown from '../ChooeOperatorDropdown/ChooseOperatorDropdown'
 
 const EditSubscription = () => {
@@ -24,6 +23,8 @@ const EditSubscription = () => {
     const [reducedPriceMonths, setReducedPriceMonths] = useState()
     const [currentUserId, setCurrentUserId] = useState('')
 
+    const [selectedOperator, setSelectedOperator] = useState()
+
     const getAllSubscriptions = useCallback(() => {
         axios.get(process.env.REACT_APP_GET_ALL_SUBSCRIPTIONS_URL).then((response) => {
             // handle success
@@ -37,17 +38,15 @@ const EditSubscription = () => {
         })
     }, [setOperators])
 
-const getCurrentUser = useCallback(() => {
-    axios
+    const getCurrentUser = useCallback(() => {
+        axios
             .get(process.env.REACT_APP_GET_CURRENT_USER_URL, {
                 headers: { 'auth-token': token },
             })
             .then((response) => {
                 setCurrentUserId(response.data)
-                console.log(currentUserId._id)
             })
-}, [setCurrentUserId])
-
+    }, [setCurrentUserId, token])
 
     useEffect(() => {
         getAllSubscriptions()
@@ -55,16 +54,14 @@ const getCurrentUser = useCallback(() => {
         getCurrentUser()
     }, [getAllSubscriptions, getAllOperators, getCurrentUser])
 
-    /*   const handleOperatorChange = (e) => {
-        const filterCustomers = operators.filter((operator) => {
+    const handleOperatorChange = (e) => {
+        const selectedOperator = operators.filter((operator) => {
+            return operator.operator_name.includes(e.target.value)
+        })
 
-
-            return operator.operator_name.includes(event.target.value);
-          });
-      
-          set(filterCustomers);
-          console.log(selectedCustomer);
-    } */
+        setSelectedOperator(selectedOperator[0])
+        console.log(selectedOperator)
+    }
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -77,7 +74,8 @@ const getCurrentUser = useCallback(() => {
             price: price,
             initial_price: initialPrice,
             reduced_price_months: reducedPriceMonths,
-            admin: currentUserId._id,
+            admin: currentUserId,
+            operator: selectedOperator,
         }
 
         console.log(subscription)
@@ -116,41 +114,9 @@ const getCurrentUser = useCallback(() => {
                     <form onSubmit={handleSubmit}>
                         <label>
                             Välj operatör:
-                            <ChooseOperatorDropdown />
+                            <ChooseOperatorDropdown onChange={handleOperatorChange} />
                         </label>
-                        {/*    <div>
-                            <label htmlFor="operator">
-                                Operatör: <i>(Namnet på operatören)</i>
-                            </label>
-                            <input
-                                type="text"
-                                name="operator"
-                                id="operator"
-                                onChange={(e) => setOperatorName(e.target.value)}
-                            />
-                        </div>
-                        <div>
-                            <label htmlFor="logo">
-                                Logotyp: <i>(URL/sökväg till bild)</i>
-                            </label>
-                            <input
-                                type="text"
-                                name="logo"
-                                id="logo"
-                                onChange={(e) => setOperatorLogo(e.target.value)}
-                            />
-                        </div>
-                        <div>
-                            <label>
-                                Affiliate länk: <i>(URL)</i>
-                            </label>
-                            <input
-                                type="text"
-                                name="affiliate_link"
-                                id="affiliate_link"
-                                onChange={(e) => setAffiliateLink(e.target.value)}
-                            />
-                        </div> */}
+
                         <div>
                             <label htmlFor="binding_time">
                                 Bindningstid: <i>(Nummer)</i>{' '}

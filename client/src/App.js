@@ -15,7 +15,6 @@ import Header from './components/Header/Header'
 // Contexts
 import { LoginContext } from './contexts/LoginContext'
 import { SubscriptionsContext } from './contexts/SubscriptionsContext'
-import { FilteredSubscriptionsContext } from './contexts/FilteredSubscriptionsContext'
 import { OperatorsContext } from './contexts/OperatorsContext'
 
 import React from 'react'
@@ -23,7 +22,6 @@ import React from 'react'
 const App = () => {
     const [token, setToken] = useState(null)
     const [subscriptions, setSubscriptions] = useState([])
-    const [filteredSubscriptions, setFilteredSubscriptions] = useState()
     const [operators, setOperators] = useState([])
 
     return (
@@ -32,26 +30,22 @@ const App = () => {
                 <OperatorsContext.Provider value={{ operators, setOperators }}>
                     <LoginContext.Provider value={{ token, setToken }}>
                         <SubscriptionsContext.Provider value={{ subscriptions, setSubscriptions }}>
-                            <FilteredSubscriptionsContext.Provider
-                                value={{ filteredSubscriptions, setFilteredSubscriptions }}
-                            >
-                                <Router>
-                                    <Header />
-                                    <Routes>
-                                        <Route path="/" element={<HomePage />} />
-                                        <Route path="/login" element={<LoginPage />} />
+                            <Router>
+                                <Header />
+                                <Routes>
+                                    <Route path="/" element={<HomePage />} />
+                                    <Route path="/login" element={<LoginPage />} />
 
-                                        <Route
-                                            path="/subscriptions"
-                                            element={
-                                                <ProtectedRoute>
-                                                    <AddSubscriptionPage />
-                                                </ProtectedRoute>
-                                            }
-                                        />
-                                    </Routes>
-                                </Router>
-                            </FilteredSubscriptionsContext.Provider>
+                                    <Route
+                                        path="/subscriptions"
+                                        element={
+                                            <ProtectedRoute>
+                                                <AddSubscriptionPage />
+                                            </ProtectedRoute>
+                                        }
+                                    />
+                                </Routes>
+                            </Router>
                         </SubscriptionsContext.Provider>
                     </LoginContext.Provider>
                 </OperatorsContext.Provider>
