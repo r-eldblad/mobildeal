@@ -35,6 +35,10 @@ const subscriptionSchema = new Schema(
             type: mongoose.Schema.Types.ObjectId,
             ref: 'Admin',
         },
+        operator: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Operator',
+        },
     },
     {
         timestamps: true,

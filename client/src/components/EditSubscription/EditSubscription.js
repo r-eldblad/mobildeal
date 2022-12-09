@@ -37,10 +37,23 @@ const EditSubscription = () => {
         })
     }, [setOperators])
 
+const getCurrentUser = useCallback(() => {
+    axios
+            .get(process.env.REACT_APP_GET_CURRENT_USER_URL, {
+                headers: { 'auth-token': token },
+            })
+            .then((response) => {
+                setCurrentUserId(response.data)
+                console.log(currentUserId._id)
+            })
+}, [setCurrentUserId])
+
+
     useEffect(() => {
         getAllSubscriptions()
         getAllOperators()
-    }, [getAllSubscriptions, getAllOperators])
+        getCurrentUser()
+    }, [getAllSubscriptions, getAllOperators, getCurrentUser])
 
     /*   const handleOperatorChange = (e) => {
         const filterCustomers = operators.filter((operator) => {
@@ -56,15 +69,6 @@ const EditSubscription = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        axios
-            .get(process.env.REACT_APP_GET_CURRENT_USER_URL, {
-                headers: { 'auth-token': token },
-            })
-            .then((response) => {
-                setCurrentUserId(response.data)
-                console.log(currentUserId._id)
-            })
-
         const subscription = {
             surf_amount: surfAmount,
             binding_time: bindingTime,
@@ -73,7 +77,7 @@ const EditSubscription = () => {
             price: price,
             initial_price: initialPrice,
             reduced_price_months: reducedPriceMonths,
-            adminId: currentUserId._id,
+            admin: currentUserId._id,
         }
 
         console.log(subscription)

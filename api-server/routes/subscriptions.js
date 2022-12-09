@@ -1,12 +1,15 @@
 const router = require('express').Router()
+const { default: mongoose } = require('mongoose')
 const verifyToken = require('../middlewares/verifyToken')
 const Admin = require('../models/admin')
+const Operator = require('../models/operator')
 const Subscription = require('../models/subscription')
 
 // adds a new subscription
 router.post('/add-subscription', verifyToken, async (req, res) => {
     try {
         const subscription = await new Subscription({
+            _id: mongoose.Types.ObjectId(),
             surf_amount: req.body.surf_amount,
             binding_time: req.body.binding_time,
             free_sms: req.body.free_sms,
@@ -14,11 +17,17 @@ router.post('/add-subscription', verifyToken, async (req, res) => {
             price: req.body.price,
             initial_price: req.body.initial_price,
             reduced_price_months: req.body.reduced_price_months,
-            admin: req.body.adminId,
+            operator: req.body.operator,
+            admin: req.body.admin,
         })
 
         await Admin.findOneAndUpdate(
             { _id: subscription.admin },
+            { $push: { subscriptions: subscription._id } }
+        )
+
+        await Operator.findOneAndUpdate(
+            { _id: subscription.operator },
             { $push: { subscriptions: subscription._id } }
         )
 
@@ -30,13 +39,13 @@ router.post('/add-subscription', verifyToken, async (req, res) => {
     }
 })
 
-// fetches all subscriptions from the database
+// Fetches all subscriptions from the database
 router.get('/all', async (req, res) => {
     const subscriptions = await Subscription.find()
     res.send(subscriptions)
 })
 
-// fetches a subscripton with specific id
+// Fetches a subscripton with specific id
 router.get('/:id', async (req, res) => {
     const subscription = await Subscription.findById(req.params.id)
     res.json(subscription)
@@ -46,9 +55,15 @@ router.get('/:id', async (req, res) => {
 router.delete('/delete/:id', async (req, res) => {
     const subscription = await Subscription.findById(req.params.id)
     try {
+        // Pulls/deletes id from Admin and Operator subscriptions array
+
         await Admin.updateOne(
             { _id: subscription.admin },
-            { $pull: { subscriptions: subscription.id } }
+            { $pull: { subscriptions: subscription._id } }
+        )
+        await Operator.updateOne(
+            { _id: subscription.operator },
+            { $pull: { subscriptions: subscription._id } }
         )
 
         await Subscription.deleteOne({ _id: req.params.id })

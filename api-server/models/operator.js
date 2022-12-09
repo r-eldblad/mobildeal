@@ -20,6 +20,16 @@ const operatorSchema = new Schema({
         min: 6,
         max: 255,
     },
+    admin: {
+        type: Schema.Types.ObjectId,
+        ref: 'Admin',
+    },
+    subscriptions: [
+        {
+            type: Schema.Types.ObjectId,
+            ref: 'Subscription',
+        },
+    ],
 })
 
 module.exports = mongoose.model('Operator', operatorSchema)

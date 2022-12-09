@@ -21,6 +21,7 @@ router.post('/register', async (req, res) => {
 
     // Creates a new admin and saves it inside of the database
     const admin = new Admin({
+        _id: mongoose.Types.ObjectId(),
         name: req.body.name,
         email: req.body.email,
         password: hashedPassword,

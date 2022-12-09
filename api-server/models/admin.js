@@ -21,6 +21,14 @@ const adminSchema = new Schema(
             max: 1024,
             min: 6,
         },
+
+        operators: [
+            {
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Operator',
+            },
+        ],
+
         subscriptions: [
             {
                 type: mongoose.Schema.Types.ObjectId,
