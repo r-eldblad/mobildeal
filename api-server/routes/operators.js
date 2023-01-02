@@ -31,8 +31,8 @@ router.get('/all', async (req, res) => {
 })
 
 router.get('/:id', async (req, res) => {
-    const subscription = await Operator.findById(req.params.id)
-    res.json(subscription)
+    const operator = await Operator.findById(req.params.id)
+    res.json(operator)
 })
 
 module.exports = router

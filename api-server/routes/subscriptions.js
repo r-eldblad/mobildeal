@@ -9,7 +9,6 @@ const Subscription = require('../models/subscription')
 router.post('/add-subscription', verifyToken, async (req, res) => {
     try {
         const subscription = await new Subscription({
-            _id: mongoose.Types.ObjectId(),
             surf_amount: req.body.surf_amount,
             binding_time: req.body.binding_time,
             free_sms: req.body.free_sms,
@@ -40,9 +39,13 @@ router.post('/add-subscription', verifyToken, async (req, res) => {
 })
 
 // Fetches all subscriptions from the database
-router.get('/all', async (req, res) => {
-    const subscriptions = await Subscription.find()
-    res.send(subscriptions)
+router.get('/all', async (req, res, next) => {
+    Subscription.find()
+        .populate('operator')
+        .exec((err, subscriptions) => {
+            if (err) return next(err)
+            res.send(subscriptions)
+        })
 })
 
 // Fetches a subscripton with specific id
