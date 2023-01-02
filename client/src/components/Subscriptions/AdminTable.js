@@ -24,7 +24,10 @@ const AdminTable = (props) => {
                             return (
                                 <tr key={data._id}>
                                     <td className="priority-1">
-                                        <img src={data.operator_logo} alt={data.operator_name} />
+                                        <img
+                                            src={`${process.env.REACT_APP_API_URL}${data.operator.operator_logo}`}
+                                            alt={data.operator_name}
+                                        />
                                     </td>
                                     <td className="priority-2">{data.surf_amount} GB</td>
                                     <td className="priority-3">{data.binding_time} mån</td>

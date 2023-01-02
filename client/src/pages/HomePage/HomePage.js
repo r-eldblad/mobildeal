@@ -17,7 +17,7 @@ const HomePage = () => {
         axios.get(process.env.REACT_APP_GET_ALL_SUBSCRIPTIONS_URL).then((response) => {
             // handle success
             setSubscriptions(response.data)
-            console.log(subscriptions)
+            console.log(response.data)
         })
     }, [setSubscriptions])
 
