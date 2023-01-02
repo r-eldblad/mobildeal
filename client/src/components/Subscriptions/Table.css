@@ -46,6 +46,7 @@ tr {
     padding: 1.3rem;
     width: auto;
     border-style: none;
+    text-decoration: none;
 }
 
 .read-more:hover {

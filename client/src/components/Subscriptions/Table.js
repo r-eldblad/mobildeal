@@ -1,6 +1,7 @@
 import './Table.css'
 
 const Table = (props) => {
+    const handleSubmit = () => {}
     if (!props.filteredSubscriptions)
         return (
             <>
@@ -21,7 +22,10 @@ const Table = (props) => {
                             return (
                                 <tr key={data._id}>
                                     <td className="priority-1">
-                                        <img src={data.operator_logo} alt={data.operator_name} />
+                                        <img
+                                            src={`${process.env.REACT_APP_API_URL}${data.operator.operator_logo}`}
+                                            alt={data.operator_name}
+                                        />
                                     </td>
                                     <td className="priority-2">{data.surf_amount} GB</td>
                                     <td className="priority-3">{data.binding_time} mån</td>
@@ -33,9 +37,15 @@ const Table = (props) => {
                                     </td>
                                     <td className="priority-6 price">{data.price} kr</td>
                                     <td>
-                                        <button className="read-more" type="button">
+                                        <a
+                                            href={data.operator.affiliate_link}
+                                            className="read-more"
+                                            onClick={handleSubmit}
+                                            rel="noopener noreferrer"
+                                            target="_blank"
+                                        >
                                             Läs mer
-                                        </button>
+                                        </a>
                                     </td>
                                 </tr>
                             )

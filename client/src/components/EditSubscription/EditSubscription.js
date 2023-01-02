@@ -122,7 +122,7 @@ const EditSubscription = () => {
                                 Bindningstid: <i>(Nummer)</i>{' '}
                             </label>
                             <input
-                                type="text"
+                                type="number"
                                 name="binding_time"
                                 id="binding_time"
                                 onChange={(e) => setBindingTime(e.target.value)}
@@ -133,7 +133,7 @@ const EditSubscription = () => {
                                 Surfmängd: <i>(Nummer)</i>
                             </label>
                             <input
-                                type="text"
+                                type="number"
                                 name="surf_amount"
                                 id="surf_amount"
                                 onChange={(e) => setSurfAmount(e.target.value)}
@@ -166,7 +166,7 @@ const EditSubscription = () => {
                                 Pris: <i> (Nummer)</i>
                             </label>
                             <input
-                                type="text"
+                                type="number"
                                 name="price"
                                 id="price"
                                 onChange={(e) => setPrice(e.target.value)}
@@ -177,7 +177,7 @@ const EditSubscription = () => {
                                 Ursprungliga priset:<i> (Nummer)</i>
                             </label>
                             <input
-                                type="text"
+                                type="number"
                                 name="initial_price"
                                 id="initial_price"
                                 onChange={(e) => setInitialPrice(e.target.value)}
@@ -188,7 +188,7 @@ const EditSubscription = () => {
                                 Månader / nedsatt pris: <i>(Nummer)</i>
                             </label>
                             <input
-                                type="text"
+                                type="number"
                                 name="months_reduced_price"
                                 id="months_reduced_price"
                                 onChange={(e) => setReducedPriceMonths(e.target.value)}

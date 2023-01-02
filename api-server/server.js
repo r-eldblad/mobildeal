@@ -20,8 +20,11 @@ dotenv.config()
 mongoose.connect(process.env.DB_CONNECT, () => {
     console.log('Connected to database')
 })
+
 server.use(cors(corsOptions))
 server.use(express.json())
+server.use(express.static('assets'))
+
 server.use('/api/subscriptions', subscriptionsRoute)
 server.use('/api/admins', adminsRoute)
 server.use('/api/operators', operatorsRoute)
