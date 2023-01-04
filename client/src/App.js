@@ -2,7 +2,7 @@ import './App.css'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 
 import { useState } from 'react'
-import ProtectedRoute from './components/ProtectedRoute/ProtectedRoute'
+import ProtectedRoute from './components/middleware/ProtectedRoute'
 
 // Page imports
 import LoginPage from './pages/LoginPage/LoginPage'
@@ -10,7 +10,7 @@ import HomePage from './pages/HomePage/HomePage'
 import AddSubscriptionPage from './pages/AddSubscriptionPage/AddSubscriptionPage'
 
 // Component imports
-import Header from './components/Header/Header'
+import Header from './components/ui/Header/Header'
 
 // Contexts
 import { LoginContext } from './contexts/LoginContext'

@@ -1,4 +1,4 @@
-import { OperatorsContext } from '../../contexts/OperatorsContext'
+import { OperatorsContext } from '../../../contexts/OperatorsContext'
 import { useContext } from 'react'
 
 const ChooseOperatorDropdown = ({ value, onChange }) => {

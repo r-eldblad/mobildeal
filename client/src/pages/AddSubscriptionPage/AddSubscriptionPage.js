@@ -1,4 +1,4 @@
-import EditSubscription from '../../components/EditSubscription/EditSubscription'
+import EditSubscription from '../../components/ui/EditSubscription/EditSubscription'
 
 const AddSubscriptionPage = () => {
     return (

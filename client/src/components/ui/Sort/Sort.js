@@ -1,5 +1,5 @@
 import './Sort.css'
-import Dropdown from '../Dropdown/Dropdown'
+import Dropdown from '../../utils/Dropdown/Dropdown'
 
 const Sort = () => {
     /*   const { subscriptions } = useContext(SubscriptionsContext)

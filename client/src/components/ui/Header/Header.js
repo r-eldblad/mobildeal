@@ -1,7 +1,7 @@
 import './Header.css'
 
 import { useNavigate } from 'react-router-dom'
-import { LoginContext } from '../../contexts/LoginContext'
+import { LoginContext } from '../../../contexts/LoginContext'
 import { useContext } from 'react'
 
 const Header = () => {

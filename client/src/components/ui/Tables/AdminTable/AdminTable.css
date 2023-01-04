@@ -13,3 +13,7 @@
 .delete-btn:hover {
     background-color: #420000;
 }
+
+.notice {
+    text-align: center;
+}
