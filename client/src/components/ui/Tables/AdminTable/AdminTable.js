@@ -1,10 +1,13 @@
 import { useContext } from 'react'
-import { LoginContext } from '../../contexts/LoginContext'
+import { LoginContext } from '../../../../contexts/LoginContext'
+import { SubscriptionsContext } from '../../../../contexts/SubscriptionsContext'
+
 import './AdminTable.css'
 
 const AdminTable = (props) => {
     const { token } = useContext(LoginContext)
-    if (token) {
+    const { subscriptions } = useContext(SubscriptionsContext)
+    if (token && subscriptions) {
         return (
             <>
                 <table>
@@ -20,7 +23,7 @@ const AdminTable = (props) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {props.subscriptionsState.map((data) => {
+                        {subscriptions.map((data) => {
                             return (
                                 <tr key={data._id}>
                                     <td className="priority-1">
@@ -55,7 +58,11 @@ const AdminTable = (props) => {
             </>
         )
     } else {
-        return <div></div>
+        return (
+            <div>
+                <h1>Bajs</h1>
+            </div>
+        )
     }
 }
 

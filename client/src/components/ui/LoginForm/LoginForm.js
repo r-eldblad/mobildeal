@@ -1,7 +1,7 @@
 import { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { LoginContext } from '../../contexts/LoginContext'
+import { LoginContext } from '../../../contexts/LoginContext'
 import './LoginForm.css'
 
 import axios from 'axios'
@@ -13,28 +13,23 @@ const LoginForm = () => {
     const [password, setPassword] = useState('')
     const navigate = useNavigate()
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault()
         const user = { email, password }
-        console.log(user)
-
-        axios
-            .post(process.env.REACT_APP_LOGIN_URL, user)
-            .then((response) => {
-                setToken(response.data)
-                navigate('/subscriptions')
-                console.log(response.data)
-            })
-            .catch((error) => {
-                console.log(error)
-            })
+        try {
+            const response = await axios.post(process.env.REACT_APP_LOGIN_URL, user)
+            setToken(response.data)
+            navigate('/subscriptions')
+        } catch (error) {
+            console.log(error)
+        }
     }
 
     return (
         <form onSubmit={handleSubmit}>
-            <div className="form-inner">
+            <div className="login-form-inner">
                 <h2 className="login-header">Logga in</h2>
-                <div className="form-group">
+                <div className="login-form-group">
                     <label htmlFor="email">Email: </label>
                     <input
                         type="email"
@@ -43,7 +38,7 @@ const LoginForm = () => {
                         onChange={(e) => setEmail(e.target.value)}
                     />
                 </div>
-                <div className="form-group">
+                <div className="login-form-group">
                     <label htmlFor="name">Password: </label>
                     <input
                         type="password"
@@ -52,7 +47,7 @@ const LoginForm = () => {
                         onChange={(e) => setPassword(e.target.value)}
                     />
                 </div>
-                <div className="center">
+                <div className="login-center">
                     <button type="submit">Logga in</button>
                 </div>
             </div>

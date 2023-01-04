@@ -16,12 +16,10 @@
     background-color: white;
 }
 
-.login-btn,
 .logout-btn {
     font-weight: 700;
 }
 
-.login-btn,
 .logout-btn,
 .control-panel {
     margin-left: 2rem;
@@ -34,14 +32,12 @@
     cursor: pointer;
 }
 
-.login-btn:hover,
 .logout-btn:hover,
 .control-panel:hover {
     background-color: #3d5c60;
 }
 
 @media screen and (max-width: 835px) {
-    .login-btn,
     .logout-btn,
     .control-panel {
         display: none;

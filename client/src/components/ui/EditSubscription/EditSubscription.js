@@ -1,13 +1,13 @@
 import './EditSubscription.css'
 
 import { useContext, useState, useEffect, useCallback } from 'react'
-import { SubscriptionsContext } from '../../contexts/SubscriptionsContext'
-import { LoginContext } from '../../contexts/LoginContext'
-import AdminTable from '../Subscriptions/AdminTable'
+import { SubscriptionsContext } from '../../../contexts/SubscriptionsContext'
+import { LoginContext } from '../../../contexts/LoginContext'
+import AdminTable from '../Tables/AdminTable/AdminTable'
 
 import axios from 'axios'
-import { OperatorsContext } from '../../contexts/OperatorsContext'
-import ChooseOperatorDropdown from '../ChooeOperatorDropdown/ChooseOperatorDropdown'
+import { OperatorsContext } from '../../../contexts/OperatorsContext'
+import ChooseOperatorDropdown from '../../utils/ChooeOperatorDropdown/ChooseOperatorDropdown'
 
 const EditSubscription = () => {
     const { subscriptions, setSubscriptions } = useContext(SubscriptionsContext)
