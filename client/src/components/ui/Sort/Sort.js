@@ -1,5 +1,8 @@
 import './Sort.css'
 import Dropdown from '../../utils/Dropdown/Dropdown'
+import { useCallback, useContext, useEffect, useState } from 'react'
+import { SubscriptionsContext } from '../../../contexts/SubscriptionsContext'
+import axios from 'axios'
 
 const Sort = () => {
     /*   const { subscriptions } = useContext(SubscriptionsContext)
@@ -40,6 +43,31 @@ const Sort = () => {
         }
     }
  */
+
+    const { setSubscriptions } = useContext(SubscriptionsContext)
+
+    const [operator, setOperator] = useState('')
+
+    const handleOperatorChange = (event) => {
+        setOperator(event.target.value)
+    }
+
+    useEffect(() => {
+        if (operator) {
+            axios({
+                method: 'post',
+                url: 'http://localhost:8080/api/operators/findSubscriptionsByOperatorName',
+                headers: {},
+                data: {
+                    operatorName: operator,
+                },
+            }).then((response) => {
+                setSubscriptions(response.data.subscriptions)
+                setOperator(response.data.operator_name)
+            })
+        }
+    }, [operator])
+
     return (
         <>
             <div className="sort-container">
@@ -48,16 +76,16 @@ const Sort = () => {
                     label="Operatör"
                     options={[
                         { label: '', value: '' },
-                        { label: 'Telia', value: 'telia' },
-                        { label: 'Hallon', value: 'hallon' },
-                        { label: 'Comviq', value: 'comviq' },
-                        { label: 'Telenor', value: 'telenor' },
-                        { label: 'Tele2', value: 'tele-2' },
-                        { label: 'Vimla', value: 'vimla' },
-                        { label: 'Tre', value: 'tre' },
+                        { label: 'Telia', value: 'Telia' },
+                        { label: 'Hallon', value: 'Hallon' },
+                        { label: 'Comviq', value: 'Comviq' },
+                        { label: 'Telenor', value: 'Telenor' },
+                        { label: 'Tele2', value: 'Tele2' },
+                        { label: 'Vimla', value: 'Vimla' },
+                        { label: 'Tre', value: 'Tre' },
                     ]}
-                    /*       value={operators}
-                    onChange={handleOperatorChange} */
+                    value={operator}
+                    onChange={handleOperatorChange}
                 />
 
                 <Dropdown
