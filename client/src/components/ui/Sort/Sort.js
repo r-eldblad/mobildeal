@@ -23,7 +23,7 @@ const Sort = () => {
         if (operator) {
             axios({
                 method: 'post',
-                url: 'http://localhost:8080/api/operators/findSubscriptionsByOperatorName',
+                url: `${process.env.REACT_APP_SORT_SUBSCRIPTIONS_BY_OPERATOR_NAME}`,
                 headers: {},
                 data: {
                     operatorName: operator,
@@ -37,7 +37,7 @@ const Sort = () => {
         if (surfAmount) {
             axios({
                 method: 'post',
-                url: 'http://localhost:8080/api/operators/sortSubscriptionsBySurfAmount',
+                url: `${process.env.REACT_APP_SORT_SUBSCRIPTIONS_BY_SURF_AMOUNT}`,
                 headers: {},
                 data: {
                     surfAmount: surfAmount,
