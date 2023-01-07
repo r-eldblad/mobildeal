@@ -57,6 +57,19 @@ router.post('/findSubscriptionsByOperatorName', async (req, res, next) => {
     }
 })
 
+router.post('/sortSubscriptionsBySurfAmount', async (req, res) => {
+    const surfAmount = req.body.surfAmount
+
+    Subscription.find({ surf_amount: { $gte: surfAmount } })
+        .populate('operator')
+        .exec((err, subscriptions) => {
+            if (err) {
+                return res.status(500).json({ error: err })
+            }
+            res.send(subscriptions)
+        })
+})
+
 router.get('/:id', async (req, res) => {
     const operator = await Operator.findById(req.params.id)
     res.json(operator)

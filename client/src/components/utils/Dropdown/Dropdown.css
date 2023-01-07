@@ -1,17 +1,17 @@
 select {
-    margin: 1rem;
-    width: 20em;
+    margin-top: 1rem;
+    width: 20rem;
     height: 3rem;
     font-size: 1rem;
     padding-left: 1rem;
-    margin: 1rem;
     background: #ffffff;
     border: 3px solid #e6e6e6;
     border-radius: 5px;
+
     cursor: pointer;
 }
 
-.dropdowns {
-    background: #fbfbfb;
-    flex: 0 1 100px;
+.label {
+    font-size: 1.4rem;
+    text-align: center;
 }

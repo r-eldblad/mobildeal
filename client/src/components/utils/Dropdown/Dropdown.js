@@ -1,10 +1,11 @@
+import { Box } from '@mui/material'
 import './Dropdown.css'
 
 const Dropdown = ({ label, value, options, onChange }) => {
     return (
-        <div className="dropdowns">
+        <Box sx={{ width: 320 }}>
             <label>
-                {label}
+                <p className="label">{label}</p>
                 <select value={value} onChange={onChange}>
                     {options.map((option) => (
                         <option key={option.value} value={option.value}>
@@ -13,7 +14,7 @@ const Dropdown = ({ label, value, options, onChange }) => {
                     ))}
                 </select>
             </label>
-        </div>
+        </Box>
     )
 }
 
