@@ -4,6 +4,10 @@
     padding: 2rem;
 }
 
+.center {
+    text-align: center;
+}
+
 @media screen and (max-width: 835px) {
     .sub-header {
         text-align: center;
