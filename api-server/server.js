@@ -7,7 +7,7 @@ const adminsRoute = require('./routes/admins')
 const operatorsRoute = require('./routes/operators')
 
 const corsOptions = {
-    origin: '*',
+    origin: 'https://mobildeal.se',
     credentials: true,
     optionSuccessStatus: 200,
     exposedHeaders: 'auth-token',
@@ -23,7 +23,7 @@ mongoose.connect(process.env.DB_CONNECT, () => {
 
 server.use(cors(corsOptions))
 server.use(express.json())
-server.use(express.static('assets'))
+server.use('/images', express.static('assets'))
 
 server.use('/api/subscriptions', subscriptionsRoute)
 server.use('/api/admins', adminsRoute)
