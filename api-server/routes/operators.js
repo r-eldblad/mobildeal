@@ -25,9 +25,49 @@ router.post('/add-operator', async (req, res) => {
 })
 
 // Fetch all available operators
-router.get('/all', async (req, res) => {
-    const operators = await Operator.find()
-    res.send(operators)
+router.get('/all', async (req, res, next) => {
+    Operator.find()
+        .populate({
+            path: 'subscriptions',
+            model: 'Subscription',
+        })
+        .exec((err, operators) => {
+            if (err) return next(err)
+            res.send(operators)
+        })
+})
+
+router.post('/findSubscriptionsByOperatorName', async (req, res, next) => {
+    const operatorName = req.body.operatorName
+
+    try {
+        const operator = await Operator.findOne({ operator_name: operatorName })
+            .populate({
+                path: 'subscriptions',
+                model: 'Subscription',
+                populate: {
+                    path: 'operator',
+                    model: 'Operator',
+                },
+            })
+            .exec()
+        res.send(operator)
+    } catch (err) {
+        return next(err)
+    }
+})
+
+router.post('/sortSubscriptionsBySurfAmount', async (req, res) => {
+    const surfAmount = req.body.surfAmount
+
+    Subscription.find({ surf_amount: { $gte: surfAmount } })
+        .populate('operator')
+        .exec((err, subscriptions) => {
+            if (err) {
+                return res.status(500).json({ error: err })
+            }
+            res.send(subscriptions)
+        })
 })
 
 router.get('/:id', async (req, res) => {

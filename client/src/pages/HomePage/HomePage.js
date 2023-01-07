@@ -16,7 +16,6 @@ const HomePage = () => {
         axios.get(process.env.REACT_APP_GET_ALL_SUBSCRIPTIONS_URL).then((response) => {
             // handle success
             setSubscriptions(response.data)
-            console.log(response.data)
         })
     }, [setSubscriptions])
 
@@ -25,9 +24,11 @@ const HomePage = () => {
             <h2 className="sub-header">Jämför mobilabonnemang</h2>
             <Sort />
 
-            {subscriptions.length && <UserTable subscriptionsState={subscriptions} />}
+            {subscriptions && subscriptions.length && (
+                <UserTable subscriptionsState={subscriptions} />
+            )}
 
-            {!subscriptions.length && (
+            {subscriptions && !subscriptions.length && (
                 <h1 className="notice">Det finns inga abonnemang upplagda.</h1>
             )}
         </>

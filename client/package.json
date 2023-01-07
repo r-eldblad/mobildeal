@@ -3,6 +3,9 @@
     "version": "0.1.0",
     "homepage": ".",
     "dependencies": {
+        "@emotion/react": "^11.10.5",
+        "@emotion/styled": "^11.10.5",
+        "@mui/material": "^5.11.3",
         "async": "^3.2.3",
         "axios": "^0.26.1",
         "bootstrap": "^5.1.3",

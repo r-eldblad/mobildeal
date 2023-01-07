@@ -1,7 +1,7 @@
 import './UserTable.css'
 
 const UserTable = (props) => {
-    if (props.subscriptionsState) {
+    if (props.subscriptionsState !== 0) {
         return (
             <>
                 <table>
