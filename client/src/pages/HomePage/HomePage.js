@@ -31,6 +31,11 @@ const HomePage = () => {
             {subscriptions && !subscriptions.length && (
                 <h1 className="notice">Det finns inga abonnemang upplagda.</h1>
             )}
+
+            <p className="center">
+                Mobildeal jämför mobilabonnemang mellan de operatörer som har affiliateprogram
+                tillgängliga.
+            </p>
         </>
     )
 }

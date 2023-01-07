@@ -70,6 +70,19 @@ router.post('/sortSubscriptionsBySurfAmount', async (req, res) => {
         })
 })
 
+router.post('/sortSubscriptionsByCost', async (req, res) => {
+    const cost = req.body.cost
+
+    Subscription.find({ price: { $lte: cost } })
+        .populate('operator')
+        .exec((err, subscriptions) => {
+            if (err) {
+                return res.status(500).json({ error: err })
+            }
+            res.send(subscriptions)
+        })
+})
+
 router.get('/:id', async (req, res) => {
     const operator = await Operator.findById(req.params.id)
     res.json(operator)
